@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Recursive&display=swap");
+
+body {
+  background-image: linear-gradient(
+    to right bottom,
+    #dec024,
+    #ffa23e,
+    #ff8569,
+    #ff7497,
+    #f475c2,
+    #d57ed7,
+    #ae88e5,
+    #8290e9,
+    #6795e5,
+    #4f99dd,
+    #3f9bd3,
+    #3b9cc6
+  );
+}
+
+.container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main {
+  width: 1000px;
+  border-radius: 20px 20px 0px 0px;
+  background-color: rgba(139, 139, 139, 0.4);
+}
+
+.top {
+  height: 60px;
+  width: 1000px;
+  background-color: #353535;
+  color: whitesmoke;
+  padding: 10px;
+  border-radius: 20px 20px 0 0;
+  font-family: "Recursive", sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header {
+  background-color: #353535;
+  color: whitesmoke;
+  margin: 10px 0px 0px 10px;
+  font-size: 25px;
+  border-radius: 20px 20px 0 0;
+  font-family: "Recursive", sans-serif;
+}
+
+.selectors {
+  height: 75px;
+  width: 1000px;
+  background-color: #353535;
+  color: whitesmoke;
+  padding: 10px;
+  border-radius: 0 0 20px 20px;
+  font-family: "Recursive", sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+.day {
+  padding: 15px;
+  color: whitesmoke;
+  font-family: "Recursive", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.temp {
+  padding: 15px;
+  color: whitesmoke;
+  font-family: "Recursive", sans-serif;
+  font-size: 18px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sunrise-sunset {
+  padding: 15px;
+  color: whitesmoke;
+  font-family: "Recursive", sans-serif;
+  font-size: 16px;
+}
+
+.description {
+  padding: 15px;
+  color: whitesmoke;
+  font-family: "Recursive", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  align-items: center;
+}
+
+.button-refresh {
+  width: 35px;
+  height: 35px;
+}
+
+.weather-image {
+  width: 5rem;
+}
+
+.forecast-container {
+  display: flex;
+  justify-content: center;
+}
+
+.forecast-day {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 150px;
+  margin: 10px;
+  border-radius: 20px;
+  color: whitesmoke;
+  background-color: rgba(139, 139, 139, 0.4);
+}
+
+.forecast-header {
+  text-align: center;
+  width: 150px;
+  background-color: #353535;
+  color: whitesmoke;
+  font-size: 20px;
+  border-radius: 20px 20px 0 0;
+  font-family: "Recursive", sans-serif;
+}
+
+.selectors button {
+  background-color: #92a7b898;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  transition-duration: 0.3s;
+}
+
+.selectors button:hover {
+  background-color: rgba(72, 138, 212, 0.527);
+}
+
+form {
+  display: flex;
+}
+
+input[type="text"] {
+  font-size: 15px;
+  border-radius: 10px;
+  height: 40px;
+  margin-top: 6px;
+}
+
+input[type="text"]:active {
+  border: 2px solid rgb(36, 36, 117);
+}
