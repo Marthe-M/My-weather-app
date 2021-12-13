@@ -12,3 +12,6 @@ A tool that shows the current weather and forecast at your current location
 ### Setup
 1. Clone the repository to a local directory
 2. cd into the directory and run npm start to run the app in development mode
+
+### Preview:
+![Weather App Preview](https://i.ibb.co/myxJwX0/weather.png)
