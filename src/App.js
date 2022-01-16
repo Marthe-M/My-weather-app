@@ -1,95 +1,95 @@
-import React, { useEffect, useState } from "react";
-import "semantic-ui-css/semantic.min.css";
-import "./App.css";
-import Weather from "./components/Weather.js";
-import Forecast from "./components/Forecast.js";
-import { Icon } from "@iconify/react";
-import searchLocation from "@iconify-icons/fa-solid/search-location";
+import React, { useEffect, useState } from 'react'
+import 'semantic-ui-css/semantic.min.css'
+import './App.css'
+import Weather from './components/Weather.js'
+import Forecast from './components/Forecast.js'
+import { Icon } from '@iconify/react'
+import searchLocation from '@iconify-icons/fa-solid/search-location'
 
-require("dotenv").config();
+require('dotenv').config()
 
-function App() {
-  const [lat, setLat] = useState([]);
-  const [long, setLong] = useState([]);
-  const [data, setData] = useState([]);
-  const [currentData, setCurrentData] = useState([]);
-  const [forecast, setForecast] = useState(false);
-  const [hourlyForecast, setHourlyForecast] = useState(false);
-  const [cityName, setCityName] = useState("");
-  const [citySearch, setCitySearch] = useState("");
-  const [cityData, setCityData] = useState([]);
-  const [localForecast, setLocalForecast] = useState(true);
+function App () {
+  const [lat, setLat] = useState([])
+  const [long, setLong] = useState([])
+  const [data, setData] = useState([])
+  const [currentData, setCurrentData] = useState([])
+  const [forecast, setForecast] = useState(false)
+  const [hourlyForecast, setHourlyForecast] = useState(false)
+  const [cityName, setCityName] = useState('')
+  const [citySearch, setCitySearch] = useState('')
+  const [cityData, setCityData] = useState([])
+  const [localForecast, setLocalForecast] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       navigator.geolocation.getCurrentPosition(function (position) {
-        setLat(position.coords.latitude);
-        setLong(position.coords.longitude);
-      });
+        setLat(position.coords.latitude)
+        setLong(position.coords.longitude)
+      })
 
       await fetch(
-        `${process.env.REACT_APP_API_URL}/onecall?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
       )
-        .then((res) => res.json())
-        .then((result) => {
-          setCurrentData(result);
-          console.log("Result currentData is", result);
-        });
+        .then(res => res.json())
+        .then(result => {
+          setCurrentData(result)
+          console.log('Result currentData is', result)
+        })
       await fetch(
-        `${process.env.REACT_APP_API_URL}/weather?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
       )
-        .then((res) => res.json())
-        .then((result) => {
-          setData(result);
-          console.log("Result setData is", result);
-        });
-    };
-    fetchData();
-  }, [lat, long]);
+        .then(res => res.json())
+        .then(result => {
+          setData(result)
+          console.log('Result setData is', result)
+        })
+    }
+    fetchData()
+  }, [lat, long])
 
   useEffect(() => {
     const getCityData = async () => {
       await fetch(
-        `${process.env.REACT_APP_API_URL}/weather?q=${citySearch}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
       )
-        .then((res) => res.json())
-        .then((result) => {
-          setCityData(result);
-          console.log("Result setCityData is", result);
-        });
-    };
-    getCityData();
-  }, [citySearch]);
+        .then(res => res.json())
+        .then(result => {
+          setCityData(result)
+          console.log('Result setCityData is', result)
+        })
+    }
+    getCityData()
+  }, [citySearch])
 
   const showForecast = () => {
-    setForecast(!forecast);
-    setHourlyForecast(false);
-  };
+    setForecast(!forecast)
+    setHourlyForecast(false)
+  }
 
   const showHourlyForecast = () => {
-    setHourlyForecast(!hourlyForecast);
-    setForecast(false);
-  };
+    setHourlyForecast(!hourlyForecast)
+    setForecast(false)
+  }
 
-  const showCityForecast = (e) => {
-    e.preventDefault();
-    setCitySearch(cityName);
-    setLocalForecast(false);
-  };
+  const showCityForecast = e => {
+    e.preventDefault()
+    setCitySearch(cityName)
+    setLocalForecast(false)
+  }
 
   return (
-    <div className="container">
-      {typeof data.timezone != "undefined" && localForecast ? (
+    <div className='container'>
+      {typeof data.timezone != 'undefined' && localForecast ? (
         <Weather weatherData={data} />
       ) : (
         <div></div>
       )}
-      {typeof cityData.timezone != "undefined" ? (
+      {typeof cityData.timezone != 'undefined' ? (
         <Weather weatherData={cityData} />
       ) : (
         <div></div>
       )}
-      <div className="selectors">
+      <div className='selectors'>
         <button onClick={() => showForecast()}>
           {!forecast ? (
             <p>Show {data.name} 6-day Forecast</p>
@@ -107,18 +107,18 @@ function App() {
 
         <form onSubmit={showCityForecast}>
           <input
-            type="text"
-            placeholder="Search city..."
+            type='text'
+            placeholder='Search city...'
             value={cityName}
-            onChange={(e) => setCityName(e.target.value)}
+            onChange={e => setCityName(e.target.value)}
           />
-          <button type="submit">
-            <Icon icon={searchLocation} style={{ fontSize: "20px" }} />
+          <button type='submit'>
+            <Icon icon={searchLocation} style={{ fontSize: '20px' }} />
           </button>
         </form>
       </div>
-      <div className="forecast-container">
-        {forecast && typeof currentData.timezone != "undefined" ? (
+      <div className='forecast-container'>
+        {forecast && typeof currentData.timezone != 'undefined' ? (
           currentData.daily
             .slice(0, 6)
             .map((day, index) => (
@@ -135,8 +135,8 @@ function App() {
           <div></div>
         )}
       </div>
-      <div className="forecast-container">
-        {hourlyForecast && typeof currentData.timezone != "undefined" ? (
+      <div className='forecast-container'>
+        {hourlyForecast && typeof currentData.timezone != 'undefined' ? (
           currentData.hourly
             .slice(0, 6)
             .map((hour, index) => (
@@ -153,7 +153,7 @@ function App() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
