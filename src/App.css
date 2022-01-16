@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Recursive&display=swap");
 
 body {
+  font-family: "Recursive", sans-serif;
   background-image: linear-gradient(
     to right bottom,
     #dec024,
@@ -147,6 +148,7 @@ body {
   display: inline-block;
   font-size: 15px;
   transition-duration: 0.3s;
+  font-family: "Recursive", sans-serif;
 }
 
 .selectors button:hover {
